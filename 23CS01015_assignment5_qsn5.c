@@ -1,102 +1,63 @@
 // #include <stdio.h>
 // #include <stdlib.h>
-// #include <string.h>
-// struct student
-// {
-//     int sroll;
-//     char sname[20];
-//     char branch[15];
-//     char programme[10];
-//     float CGPA;
-// };
-
 // int main()
 // {
-//     int n;
-//     printf("Enter N : ");
-//     scanf("%d", &n);
-//     struct student *students = (struct student *)malloc(n * sizeof(struct student));
-//     if (students == NULL)
+//     int * arr=(int *)malloc(10*sizeof(int));
+//     printf("Enter the elements of the array\n");
+//     for (int i = 0; i < 10; i++)
 //     {
-//         printf("Memory allocation failed\n");
+//         scanf("%d",&arr[i]);
 //     }
-
-//     for (int i = 0; i < n; i++)
+//     printf("Printing the array elements : \n");
+//     for (int i = 0; i < 10; i++)
 //     {
-//         printf("Enter sroll : ");
-//         scanf("%d", &students[i].sroll);
-//         getchar();
-//         printf("Enter sname : ");
-//         scanf("%s", &students[i].sname);
-//         getchar();
-//         printf("Enter branch : ");
-//         scanf("%s", &students[i].branch);
-//         getchar();
-//         printf("Enter programme : ");
-//         scanf("%s", &students[i].programme);
-//         getchar();
-//         printf("Enter CGPA : ");
-//         scanf("%f", &students[i].CGPA);
-//         getchar();
+//         printf("%d ",arr[i]);
 //     }
-//     char branch[15], programme[10];
-//     printf("Enter the branch : ");
-//     scanf("%s", &branch);
-//     printf("Enter the programme : ");
-//     scanf("%s", &programme);
-//     char *branchp = branch;
-//     char *programmep = programme;
-//     int max = 0, index = 0;
-//     for (int i = 0; i < n; i++)
-//     {
-
-//         if ((strcmp(students[i].branch, branchp)) == 0 && (strcmp(students[i].programme, programmep)) == 0)
-//         {
-//             if (students[i].CGPA > max)
-//             {
-//                 max = students[i].CGPA;
-//                 index = i;
-//             }
-//         }
-//     }
-//     printf("The student who secured highest CGPA in %s branch and %s programme is : %s\n", branch, programme, students[index].sname);
+//     free(arr);
 //     return 0;
 // }
-
 #include <stdio.h>
 int main()
 {
-    int num = 0;
-    while (1)
+    int n;
+    printf("Enter the size of the array : ");
+    scanf("%d", &n);
+    int freq[26];
+    for (int i = 0; i < 26; i++)
     {
-        int n;
-        printf("Provide a number : ");
-        scanf("%d", &n);
-        if (n % 2 == 0)
-        {
-            num += n;
-        }
+        freq[i] = 0;
+    }
+    char arr[n];
+    scanf("%s", &arr);
+    for (int i = 0; i < n; i++)
+    {
+        int num = arr[i] - 97;
+        freq[num]++;
+    }
 
-        char choice;
-        printf("Do you want to continue?\n");
-        getchar();
-        scanf("%c", &choice);
-        while (choice != 'Y' && choice != 'y' && choice != 'n' && choice != 'N')
+    char word[n];
+    printf("Enter the word : ");
+    getchar();
+    scanf("%s", &word);
+    for (int i = 0; i < n; i++)
+    {
+        int num = word[i] - 97;
+        freq[num]--;
+    }
+    int check = 1;
+    for (int i = 0; i < 26; i++)
+    {
+        if (freq[i] < 0)
         {
-            printf("Not a valid input\n");
-            getchar();
-            scanf("%c", &choice);
-        }
-        if (choice == 'Y' || choice == 'y')
-        {
-            continue;
-        }
-        if (choice == 'N' || choice == 'n')
-        {
-            printf("The sum is : %d ", num);
-            break;
+            check = 0;
         }
     }
+    if (check)
+    {
+        printf("This word can be made from the given word\n");
+    }
+    else
+        printf("This word can not be made from the given word\n");
 
     return 0;
 }
