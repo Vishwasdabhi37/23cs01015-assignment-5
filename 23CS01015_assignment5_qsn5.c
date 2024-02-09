@@ -81,7 +81,7 @@ int main()
         printf("Do you want to continue?\n");
         getchar();
         scanf("%c", &choice);
-        while (choice != 'Y' && (choice - 'y') && choice != 'n' && choice != 'N')
+        while (choice != 'Y' && choice != 'y' && choice != 'n' && choice != 'N')
         {
             printf("Not a valid input\n");
             getchar();
