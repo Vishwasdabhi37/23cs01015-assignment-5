@@ -56,22 +56,40 @@
 //      return 0;
 //  }
 #include <stdio.h>
+#include <stdlib.h>
 int main()
 {
     int divident, divisor;
     printf("Enter divident and divsior\n");
     scanf("%d", &divident);
     scanf("%d", &divisor);
+    int check = divident * divisor;
     int quotient = 0, remainder = 0;
-    int temp = divident;
-    while (temp > divisor)
+    int temp = abs(divident);
+    while (temp > abs(divisor))
     {
-        temp -= divisor;
+        temp -= abs(divisor);
         quotient++;
     }
     remainder = temp;
-    printf("Quotient = %d\n", quotient);
-    printf("Remainder = %d\n", remainder);
+    if (check > 0)
+    {
+        printf("Quotient = %d\n", quotient);
+        printf("Remainder = %d\n", remainder);
+    }
+    else if (divisor < 0)
+    {
+        quotient -= (2 * quotient);
+        printf("Quotient = %d\n", quotient);
+        printf("Remainder = %d\n", remainder);
+    }
+    else if (divident < 0)
+    {
+        quotient -= (2 * quotient);
+        remainder -= (2 * remainder);
+        printf("Quotient = %d\n", quotient);
+        printf("Remainder = %d\n", remainder);
+    }
 
     return 0;
 }
