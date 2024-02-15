@@ -46,7 +46,7 @@
 //     return 0;
 // }
 
-// implimenting the same program with hashing
+// implimenting the same program with another method
 #include <stdio.h>
 static int nums[9];
 int main()
