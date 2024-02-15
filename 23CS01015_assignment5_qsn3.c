@@ -35,8 +35,10 @@
 //     return 0;
 // }
 
-//Implimenting the same code with other method
+// Implimenting the same code with other method
 #include <stdio.h>
+int ans[24];
+int ansvar = 0;
 void swap(int *a, int *b)
 {
     int temp = *a;
@@ -55,7 +57,6 @@ int main()
         temp /= 10;
         i++;
     }
-    int v = 1;
     for (int i = 0; i < 4; i++)
     {
         for (int j = 0; j < 6; j++)
@@ -63,14 +64,47 @@ int main()
             if (j % 2)
             {
                 swap(&digits[1], &digits[2]);
-                printf("%d : %d%d%d%d\n", v++, digits[(0 + i) % 4], digits[(1 + i) % 4], digits[(2 + i) % 4], digits[(3 + i) % 4]);
+                int ansnum = digits[(0 + i) % 4] * 1000 + digits[(1 + i) % 4] * 100 + digits[(2 + i) % 4] * 10 + digits[(3 + i) % 4];
+                int check = 1;
+                for (int i = 0; i < ansvar; i++)
+                {
+                    if (ansnum == ans[i])
+                    {
+                        check = 0;
+                        break;
+                    }
+                }
+                if (check)
+                {
+                    ans[ansvar] = ansnum;
+                    ansvar++;
+                }
+
             }
             else
             {
                 swap(&digits[2], &digits[3]);
-                printf("%d : %d%d%d%d\n", v++, digits[(0 + i) % 4], digits[(1 + i) % 4], digits[(2 + i) % 4], digits[(3 + i) % 4]);
+                int ansnum = digits[(0 + i) % 4] * 1000 + digits[(1 + i) % 4] * 100 + digits[(2 + i) % 4] * 10 + digits[(3 + i) % 4];
+                int check = 1;
+                for (int i = 0; i < ansvar; i++)
+                {
+                    if (ansnum == ans[i])
+                    {
+                        check = 0;
+                        break;
+                    }
+                }
+                if (check)
+                {
+                    ans[ansvar] = ansnum;
+                    ansvar++;
+                }
             }
         }
+    }
+    for (int i = 0; i < ansvar; i++)
+    {
+        printf("%d : %d\n", i + 1, ans[i]);
     }
 
     return 0;
