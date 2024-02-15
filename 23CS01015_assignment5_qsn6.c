@@ -22,42 +22,69 @@ int main()
     int n;
     printf("Enter the size of the array : ");
     scanf("%d", &n);
-    int freq[26];
+    int freqsml[26];
+    int freqcap[26];
     for (int i = 0; i < 26; i++)
     {
-        freq[i] = 0;
+        freqsml[i] = 0;
+        freqcap[i] = 0;
     }
     char arr[n];
+    printf("Enter the first word :");
     scanf("%s", &arr);
     for (int i = 0; i < n; i++)
     {
-        int num = arr[i] - 97;
-        freq[num]++;
+        int check = arr[i];
+        if (check > 96)
+        {
+            int num = arr[i] - 97;
+            freqsml[num]++;
+        }
+        if (check < 96)
+        {
+            int num = arr[i] - 65;
+            freqcap[num]++;
+        }
     }
-
     char word[n];
-    printf("Enter the word : ");
+    printf("Enter the second word : ");
     getchar();
     scanf("%s", &word);
     for (int i = 0; i < n; i++)
     {
-        int num = word[i] - 97;
-        freq[num]--;
-    }
-    int check = 1;
-    for (int i = 0; i < 26; i++)
-    {
-        if (freq[i] < 0)
+        int check = word[i];
+        if (check > 96)
         {
-            check = 0;
+            int num = word[i] - 97;
+            freqsml[num]--;
+        }
+        if (check < 96)
+        {
+            int num = arr[i] - 65;
+            freqcap[num]--;
         }
     }
-    if (check)
+    int check2 = 1;
+    for (int i = 0; i < 26; i++)
     {
-        printf("This word can be made from the given word\n");
+        if (freqsml[i] < 0)
+        {
+            check2 = 0;
+        }
+    }
+    for (int i = 0; i < 26; i++)
+    {
+        if (freqcap[i] < 0)
+        {
+            check2 = 0;
+        }
+    }
+    if (check2)
+    {
+        printf("This word can be made from the given word.\n");
     }
     else
-        printf("This word can not be made from the given word\n");
+        printf("This word can not be made from the given word.\n");
 
     return 0;
 }
